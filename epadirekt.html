@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EPA Hjälpen</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+    body{background:linear-gradient(180deg,#001a38,#003b73,#7ec8ff);color:white;padding:16px;min-height:100vh}
+    .container{max-width:980px;margin:auto}
+    .logo-banner{width:100%;min-height:150px;border-radius:28px;padding:20px;background:radial-gradient(circle at top left,rgba(185,230,255,.55),transparent 35%),linear-gradient(135deg,#001f3f,#004f9e,#b9e6ff);border:1px solid rgba(185,230,255,.45);box-shadow:0 18px 40px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:space-between;gap:18px;overflow:hidden;margin-bottom:22px}
+    .logo-text h1{font-size:clamp(32px,8vw,58px);line-height:1;letter-spacing:-1px}
+    .logo-text p{color:#dff5ff;margin-top:8px;font-weight:bold}
+    .logo-art{min-width:170px;height:110px;position:relative}
+    .car{position:absolute;bottom:20px;left:5px;width:88px;height:38px;background:#062f61;border-radius:16px 18px 8px 8px;border:3px solid #b9e6ff}
+    .car:before{content:"";position:absolute;top:-28px;left:20px;width:45px;height:30px;background:#0d65b5;border:3px solid #b9e6ff;border-radius:18px 18px 4px 4px}
+    .wheel{position:absolute;bottom:-13px;width:24px;height:24px;background:#001f3f;border:5px solid #b9e6ff;border-radius:50%}
+    .wheel.one{left:10px}.wheel.two{right:10px}
+    .head{position:absolute;top:-38px;right:22px;width:26px;height:26px;background:#ffd2a6;border-radius:50%;border:2px solid #001f3f}
+    .speech{position:absolute;top:8px;right:0;background:white;color:#001f3f;padding:8px 10px;border-radius:16px;font-size:12px;font-weight:bold;box-shadow:0 8px 20px rgba(0,0,0,.2);white-space:nowrap}
+    .trailer{position:absolute;bottom:18px;left:102px;width:58px;height:30px;border:3px solid #b9e6ff;background:#0d65b5;border-radius:8px}
+    .trailer:after{content:"";position:absolute;bottom:-13px;right:8px;width:22px;height:22px;background:#001f3f;border:5px solid #b9e6ff;border-radius:50%}
+    .counter{text-align:center;color:#b9e6ff;font-size:18px;font-weight:bold;margin-bottom:24px}
+    .section-title{margin:28px 0 14px;font-size:24px}
+    .filter-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px}
+    .filter-btn{border:none;border-radius:999px;padding:13px 18px;background:#b9e6ff;color:#001f3f;font-weight:bold;white-space:nowrap;cursor:pointer;transition:.2s}
+    .filter-btn.active{background:white;transform:scale(1.03)}
+    .result-info{margin-top:12px;color:#dff5ff;font-weight:bold}
+    .youth-list{display:grid;gap:18px;margin-top:16px}
+    .youth-card{background:rgba(0,31,63,.78);border:1px solid rgba(185,230,255,.35);border-radius:24px;padding:18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+    .profile-img{height:185px;border-radius:20px;background:linear-gradient(135deg,#003b73,#b9e6ff);display:flex;align-items:center;justify-content:center;color:#001f3f;font-weight:bold;font-size:18px}
+    .area-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+    .tag{background:rgba(185,230,255,.18);color:#dff5ff;border:1px solid rgba(185,230,255,.35);border-radius:999px;padding:6px 10px;font-size:13px;font-weight:bold}
+    .price{color:#b9e6ff;font-weight:bold;font-size:17px}
+    .business-box,.faq-box{background:rgba(0,31,63,.72);border:1px solid rgba(185,230,255,.35);border-radius:24px;padding:18px;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+    .business-box{max-width:500px;margin:0 auto}
+    label{font-weight:bold;color:#dff5ff}
+    input,textarea{width:100%;margin-top:8px;margin-bottom:12px;padding:12px;border-radius:14px;border:none;outline:none}
+    textarea{min-height:95px;resize:vertical}
+    .send-btn{width:100%;padding:13px;border:none;border-radius:16px;background:#b9e6ff;color:#001f3f;font-weight:bold;cursor:pointer}
+    .faq-question{cursor:pointer;font-size:19px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .faq-answer{display:none;margin-top:12px;color:#dff5ff;line-height:1.5}
+    .footer{text-align:center;margin:35px 0 10px;color:#dff5ff;font-size:14px}
+    a{color:#b9e6ff;font-weight:bold}
+    @media(min-width:750px){.youth-list{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:520px){body{padding:12px}.logo-banner{min-height:170px;align-items:flex-start;padding:18px}.logo-art{min-width:145px;transform:scale(.82);transform-origin:right top;margin-right:-18px}.logo-text h1{font-size:34px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="logo-banner">
+      <div class="logo-text"><h1>EPA Hjälpen</h1><p>För dig, nära dig</p></div>
+      <div class="logo-art"><div class="speech">Nu kör vi!</div><div class="car"><div class="head"></div><div class="wheel one"></div><div class="wheel two"></div></div><div class="trailer"></div></div>
+    </section>
+
+    <p class="counter" id="activeCounter">12 aktiva ungdomar</p>
+
+    <section>
+      <h2 class="section-title">Kommun</h2>
+      <div class="filter-row">
+        <button class="filter-btn active" onclick="filterArea('alla', this)">Alla</button>
+        <button class="filter-btn" onclick="filterArea('Upplands Väsby', this)">Upplands Väsby</button>
+        <button class="filter-btn" onclick="filterArea('Sollentuna', this)">Sollentuna</button>
+        <button class="filter-btn" onclick="filterArea('Märsta', this)">Märsta</button>
+        <button class="filter-btn" onclick="filterArea('Rotebro', this)">Rotebro</button>
+      </div>
+      <p class="result-info" id="resultInfo">Visar alla tillgängliga ungdomar</p>
+    </section>
+
+    <section>
+      <h2 class="section-title">Drivna ungdomar</h2>
+      <div class="youth-list" id="youthList">
+
+        <div class="youth-card" data-areas="Upplands Väsby"><div class="profile-img">Bild</div><h3>Evelina Andersson</h3><p>Kvalifikationer: Sopor, transport, enklare bärhjälp</p><div class="area-tags"><span class="tag">Upplands Väsby</span></div><p class="price">Pris från 300 kr</p></div>
+        <div class="youth-card" data-areas="Upplands Väsby"><div class="profile-img">Bild</div><h3>Lucas Berg</h3><p>Kvalifikationer: Grovsopor, återvinning, mindre transporter</p><div class="area-tags"><span class="tag">Upplands Väsby</span></div><p class="price">Pris från 300 kr</p></div>
+
+        <div class="youth-card" data-areas="Sollentuna Upplands Väsby"><div class="profile-img">Bild</div><h3>Noah Lind</h3><p>Kvalifikationer: Sopor, transport, däckhjälp</p><div class="area-tags"><span class="tag">Sollentuna</span><span class="tag">Upplands Väsby</span></div><p class="price">Pris från 300 kr</p></div>
+        <div class="youth-card" data-areas="Sollentuna"><div class="profile-img">Bild</div><h3>Albin Sjöberg</h3><p>Kvalifikationer: Däckbyte, gräsklippning, bärhjälp</p><div class="area-tags"><span class="tag">Sollentuna</span></div><p class="price">Pris från 300 kr</p></div>
+        <div class="youth-card" data-areas="Sollentuna"><div class="profile-img">Bild</div><h3>Melvin Ek</h3><p>Kvalifikationer: Trädgård, transport, enklare flytthjälp</p><div class="area-tags"><span class="tag">Sollentuna</span></div><p class="price">Pris från 300 kr</p></div>
+
+        <div class="youth-card" data-areas="Märsta Upplands Väsby"><div class="profile-img">Bild</div><h3>Wilma Holm</h3><p>Kvalifikationer: Sopor, släptransport, sortering</p><div class="area-tags"><span class="tag">Märsta</span><span class="tag">Upplands Väsby</span></div><p class="price">Pris från 300 kr</p></div>
+        <div class="youth-card" data-areas="Märsta Upplands Väsby"><div class="profile-img">Bild</div><h3>Hugo Nyström</h3><p>Kvalifikationer: Återvinning, transport, bärhjälp</p><div class="area-tags"><span class="tag">Märsta</span><span class="tag">Upplands Väsby</span></div><p class="price">Pris från 300 kr</p></div>
+        <div class="youth-card" data-areas="Märsta"><div class="profile-img">Bild</div><h3>Ella Karlsson</h3><p>Kvalifikationer: Gräsklippning, trädgård, enklare ärenden</p><div class="area-tags"><span class="tag">Märsta</span></div><p class="price">Pris från 300 kr</p></div>
+        <div class="youth-card" data-areas="Märsta"><div class="profile-img">Bild</div><h3>Adam Fors</h3><p>Kvalifikationer: Däckbyte, transport, enklare service</p><div class="area-tags"><span class="tag">Märsta</span></div><p class="price">Pris från 300 kr</p></div>
+        <div class="youth-card" data-areas="Märsta"><div class="profile-img">Bild</div><h3>Felicia Lund</h3><p>Kvalifikationer: Sopor, packhjälp, mindre transporter</p><div class="area-tags"><span class="tag">Märsta</span></div><p class="price">Pris från 300 kr</p></div>
+
+        <div class="youth-card" data-areas="Rotebro Märsta"><div class="profile-img">Bild</div><h3>Oliver Sand</h3><p>Kvalifikationer: Transport, grovsopor, bärhjälp</p><div class="area-tags"><span class="tag">Rotebro</span><span class="tag">Märsta</span></div><p class="price">Pris från 300 kr</p></div>
+        <div class="youth-card" data-areas="Rotebro"><div class="profile-img">Bild</div><h3>Emilia Westin</h3><p>Kvalifikationer: Gräsklippning, trädgård, enklare transport</p><div class="area-tags"><span class="tag">Rotebro</span></div><p class="price">Pris från 300 kr</p></div>
+
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Vill du synas på vår hemsida?</h2>
+      <div class="business-box">
+        <form>
+          <label>Namn</label><input type="text" placeholder="Företagsnamn" />
+          <label>Mail</label><input type="email" placeholder="kontakt@foretag.se" />
+          <label>Meddelande</label><textarea placeholder="Skriv kort vad ni är intresserade av..."></textarea>
+          <button class="send-btn" type="submit">Skicka intresseanmälan</button>
+        </form>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">FAQ</h2>
+      <div class="faq-box">
+        <h3 class="faq-question" onclick="toggleFAQ('whyAnswer', this)">Varför gör vi det här? <span>▼</span></h3>
+        <p class="faq-answer" id="whyAnswer">Vi vill samla lokala ungdomar som redan hjälper människor i närområdet. Målet är att göra det enklare för kunder att hitta hjälp, samtidigt som ungdomar får exponering, erfarenhet och möjlighet att tjäna extra pengar.</p>
+      </div>
+      <br />
+      <div class="faq-box">
+        <h3 class="faq-question" onclick="toggleFAQ('contactAnswer', this)">Kontakta oss <span>▼</span></h3>
+        <p class="faq-answer" id="contactAnswer">Mail: <a href="mailto:Jesper.kalinowski@gmail.com">Jesper.kalinowski@gmail.com</a><br />Telefon: <a href="tel:0737722262">0737722262</a></p>
+      </div>
+    </section>
+
+    <footer class="footer">EPA direkt · Lokal hjälp av ungdomar med epa, nära dig</footer>
+  </div>
+
+  <script>
+    function filterArea(area, button) {
+      const cards = document.querySelectorAll(".youth-card");
+      const resultInfo = document.getElementById("resultInfo");
+      const buttons = document.querySelectorAll(".filter-btn");
+      let visibleCount = 0;
+
+      buttons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      cards.forEach(card => {
+        const areas = card.dataset.areas;
+        if (area === "alla" || areas.includes(area)) {
+          card.style.display = "flex";
+          visibleCount++;
+        } else {
+          card.style.display = "none";
+        }
+      });
+
+      resultInfo.textContent = area === "alla"
+        ? "Visar alla tillgängliga ungdomar"
+        : "Visar " + visibleCount + " ungdomar tillgängliga i " + area;
+    }
+
+    function toggleFAQ(id, question) {
+      const answer = document.getElementById(id);
+      const arrow = question.querySelector("span");
+
+      if (answer.style.display === "block") {
+        answer.style.display = "none";
+        arrow.textContent = "▼";
+      } else {
+        answer.style.display = "block";
+        arrow.textContent = "▲";
+      }
+    }
+  </script>
+</body>
+</html>
